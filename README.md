@@ -8,6 +8,7 @@
 
 - 运行已完成的本地项目并准备截图工作流
 - 基于真实 UI 截图生成宣传片结构
+- 支持从正在运行的项目自动采集截图到本地
 - 生成 Remotion 工作目录和场景数据
 - 支持 Edge TTS 场景配音
 - 支持可选背景音乐接入
@@ -25,9 +26,12 @@ videoskill/
     │   └── openai.yaml
     ├── scripts/
     │   ├── bootstrap_promo_project.py
+    │   ├── capture_project_screenshots.mjs
     │   └── generate_voiceover_edge.py
     ├── references/
     │   ├── audio-notes.md
+    │   ├── screenshot-capture.md
+    │   ├── screenshot-plan.example.json
     │   └── remotion-notes.md
     └── assets/
         └── remotion-template/
@@ -38,7 +42,7 @@ videoskill/
 `project-promo-video` 的目标是把一个已经完成的产品项目转成宣传片素材流：
 
 1. 运行项目
-2. 采集高质量产品截图
+2. 自动或手动采集高质量产品截图
 3. 生成宣传片文案和场景配置
 4. 可选生成旁白音频
 5. 可选接入背景音乐
@@ -88,7 +92,32 @@ pip install edge-tts
 
 ### 1. 准备截图
 
-先运行你自己的项目，并采集 5-8 张高质量截图，建议命名为：
+先运行你自己的项目。截图可以手动准备，也可以用仓库自带的自动采集脚本。
+
+#### 方式 A：自动采集截图
+
+先安装截图运行时：
+
+```bash
+cd project-promo-video/scripts
+npm install
+npx playwright install chromium
+```
+
+然后对正在运行的项目执行截图采集：
+
+```bash
+node capture_project_screenshots.mjs \
+  --base-url http://127.0.0.1:3000 \
+  --plan ../references/screenshot-plan.example.json \
+  --output-dir F:\path\to\screenshots
+```
+
+如果项目流程比较复杂，可以先改 `project-promo-video/references/screenshot-plan.example.json` 再执行。
+
+#### 方式 B：手动准备截图
+
+如果项目状态复杂或截图逻辑不适合脚本化，也可以直接手动采集 5-8 张高质量截图，建议命名为：
 
 ```text
 01-home.png
@@ -166,8 +195,12 @@ out/product-promo.mp4
   skill 主说明
 - `project-promo-video/scripts/bootstrap_promo_project.py`
   生成宣传片工作目录
+- `project-promo-video/scripts/capture_project_screenshots.mjs`
+  从正在运行的项目采集截图到本地
 - `project-promo-video/scripts/generate_voiceover_edge.py`
   生成配音并回写时序
+- `project-promo-video/references/screenshot-capture.md`
+  截图采集工作流和计划格式说明
 - `project-promo-video/assets/remotion-template/src/promo-data.ts`
   宣传片文案、截图和品牌配置
 - `project-promo-video/assets/remotion-template/src/audio-config.ts`
@@ -194,6 +227,7 @@ out/product-promo.mp4
 当前仓库已经包含：
 
 - 完整 skill 目录
+- 自动截图采集能力
 - Remotion 宣传片模板
 - Edge TTS 配音脚本
 - 音乐接入和自动压混逻辑

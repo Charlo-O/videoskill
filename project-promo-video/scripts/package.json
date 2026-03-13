@@ -1,0 +1,11 @@
+{
+  "name": "project-promo-video-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture:screenshots": "node capture_project_screenshots.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.54.2"
+  }
+}

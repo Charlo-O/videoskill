@@ -1,0 +1,46 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "waitUntil": "networkidle",
+  "waitAfterNavigationMs": 800,
+  "hideSelectors": [
+    "[data-next-badge-root]",
+    "[data-testid='dev-toolbar']"
+  ],
+  "shots": [
+    {
+      "name": "01-home",
+      "path": "/",
+      "waitForSelector": "main"
+    },
+    {
+      "name": "02-dashboard",
+      "path": "/dashboard",
+      "waitForSelector": "[data-testid='dashboard-root']",
+      "waitBeforeScreenshotMs": 500
+    },
+    {
+      "name": "03-search-results",
+      "path": "/search",
+      "waitForSelector": "input[type='search']",
+      "actions": [
+        {
+          "type": "fill",
+          "selector": "input[type='search']",
+          "value": "demo"
+        },
+        {
+          "type": "press",
+          "selector": "input[type='search']",
+          "key": "Enter"
+        },
+        {
+          "type": "wait",
+          "ms": 1000
+        }
+      ]
+    }
+  ]
+}

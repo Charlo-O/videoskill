@@ -15,7 +15,7 @@ This skill is best for web apps, dashboards, SaaS tools, landing pages, admin pa
 
 - A runnable project with a real start command
 - Access to the app in a browser or desktop window
-- 5-10 strong product states worth showing
+- Either a screenshot directory or a running local app that can be captured
 - A destination directory for the promo workspace
 - Optional brand inputs such as product name, tagline, accent color, CTA, or background music
 
@@ -34,7 +34,28 @@ If the app will not run, stop and report the blocker. Do not invent screenshots 
 
 ### 2. Capture screenshots that sell the product
 
-Use browser tools or repeatable automation to capture polished screenshots. If the separate `$playwright` skill is available, use it for deterministic capture flows.
+Use the bundled screenshot capture script when the project is already running and the key screens can be reached by URL plus light interaction.
+
+Install the screenshot runtime once:
+
+```bash
+cd scripts
+npm install
+npx playwright install chromium
+```
+
+Run the capture script against the running app:
+
+```bash
+node scripts/capture_project_screenshots.mjs \
+  --base-url http://127.0.0.1:3000 \
+  --plan references/screenshot-plan.example.json \
+  --output-dir <screenshot-dir>
+```
+
+This writes screenshots and `capture-manifest.json` to the target directory.
+
+If the flow requires complex authentication, modal choreography, drag-and-drop, or highly dynamic state, switch to the separate `$playwright` skill for manual browser driving and then continue with the captured screenshot directory.
 
 Capture these categories when possible:
 - Hero or home state
@@ -165,8 +186,14 @@ Successful use of this skill should produce:
 
 - `scripts/bootstrap_promo_project.py`
   Creates a working Remotion promo project, optional BGM wiring, and voiceover scaffolding.
+- `scripts/capture_project_screenshots.mjs`
+  Collects screenshots from a running local app into a local directory using Playwright.
 - `scripts/generate_voiceover_edge.py`
   Generates per-scene narration with Edge TTS and rewrites `src/audio-config.ts`.
+- `references/screenshot-capture.md`
+  Describes when to use the built-in capture script and the JSON plan format.
+- `references/screenshot-plan.example.json`
+  Example capture plan for a running local app.
 - `references/remotion-notes.md`
   Notes about the reference repo and when to use MP4 vs transparent output.
 - `references/audio-notes.md`
