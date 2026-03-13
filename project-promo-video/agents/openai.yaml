@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Promo Video"
+  short_description: "Run apps, capture screenshots, render promo trailers."
+  default_prompt: "Use $project-promo-video to run this project, capture its strongest screens, and render a short promo video that matches the product."

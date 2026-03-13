@@ -1,0 +1,11 @@
+refs/
+tmp/
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+node_modules/
+dist/
+out/

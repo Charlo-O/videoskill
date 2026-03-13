@@ -1,0 +1,20 @@
+{
+  "name": "project-promo-template",
+  "private": true,
+  "scripts": {
+    "start": "remotion studio src/index.ts --public-dir public",
+    "render": "remotion render src/index.ts ProductPromo out/product-promo.mp4 --public-dir public --codec h264 --pixel-format yuv420p",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4.0.407",
+    "@remotion/cli": "^4.0.407",
+    "@types/node": "^24.6.1",
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "remotion": "^4.0.407",
+    "typescript": "^5.9.3"
+  }
+}
