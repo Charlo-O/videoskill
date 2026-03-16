@@ -40,14 +40,17 @@ Good options:
 - Free Music Archive when the exact license is acceptable for the user's distribution
 - Public-domain classical sources for sober product videos
 
-## Current Validation Track
+## Default Background Track
 
-For demo rendering, a good fit is [Our expanse](https://opengameart.org/content/our-expanse) from OpenGameArt.
+The bootstrap script automatically downloads [Our expanse (loop)](https://opengameart.org/content/our-expanse) from OpenGameArt when no `--bgm-file` is provided.
 
-Reasons:
+Properties:
 - Tags and preview describe it as futuristic, upbeat, cinematic, and montage-friendly
-- License is listed as `CC0`
-- It has downloadable `mp3` and `ogg` files
+- License is `CC0` (public domain, no attribution required)
+- Download: `our_expanse_-_loop.mp3`
+- The file is cached in `public/audio/default-bgm.mp3` and reused on subsequent runs
+
+To skip automatic music, pass `--no-bgm`. To use a custom track, pass `--bgm-file <path>`.
 
 Always record the music source and license in the delivery note when you render a final trailer for the user.
 

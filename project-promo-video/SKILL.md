@@ -17,7 +17,7 @@ This skill is best for web apps, dashboards, SaaS tools, landing pages, admin pa
 - Access to the app in a browser or desktop window
 - Either a screenshot directory or a running local app that can be captured
 - A destination directory for the promo workspace
-- Optional brand inputs such as product name, tagline, accent color, CTA, or background music
+- Optional brand inputs such as product name, tagline, accent color, CTA, or custom background music
 
 ## Workflow
 
@@ -93,13 +93,15 @@ python scripts/bootstrap_promo_project.py \
   --screenshots <screenshot-dir> \
   --project-name "Acme" \
   --tagline "Close work faster" \
-  --bgm-file <optional-music-file> \
   --accent "#14b8a6"
 ```
+
+Background music is **added automatically** using a CC0-licensed default track (downloaded on first run). To use a custom track instead, pass `--bgm-file <path-to-music>`. To explicitly skip background music, pass `--no-bgm`.
 
 The bootstrap script:
 - Copies `assets/remotion-template` into the target workspace without overwriting existing user edits
 - Copies screenshots into `public/screenshots`
+- Downloads and wires default background music (or copies a custom file)
 - Generates `src/promo-data.ts`
 - Generates `src/audio-config.ts`
 - Generates `public/audio/voiceover-script.json`
@@ -145,7 +147,7 @@ Default output:
 - `out/product-promo.mp4`
 
 Edit these files when the first pass is too generic:
-- `src/promo-data.ts` for copy, accent, screenshot text, and optional BGM
+- `src/promo-data.ts` for copy, accent, screenshot text, and BGM settings
 - `src/audio-config.ts` for scene-level timing
 - `src/components/ProductPromo.tsx` for layout or transitions
 - `remotion.config.ts` for codec defaults
@@ -185,7 +187,7 @@ Successful use of this skill should produce:
 ## Resources
 
 - `scripts/bootstrap_promo_project.py`
-  Creates a working Remotion promo project, optional BGM wiring, and voiceover scaffolding.
+  Creates a working Remotion promo project with automatic BGM and voiceover scaffolding.
 - `scripts/capture_project_screenshots.mjs`
   Collects screenshots from a running local app into a local directory using Playwright.
 - `scripts/generate_voiceover_edge.py`

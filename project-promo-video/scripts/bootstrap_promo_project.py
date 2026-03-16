@@ -4,6 +4,7 @@ import argparse
 import json
 import re
 import shutil
+import urllib.request
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -12,6 +13,11 @@ SUPPORTED_AUDIO_SUFFIXES = {".mp3", ".wav", ".ogg", ".m4a"}
 FPS = 30
 INTRO_FRAMES = 60
 OUTRO_FRAMES = 60
+
+# CC0-licensed default background music from OpenGameArt
+# Source: https://opengameart.org/content/our-expanse (CC0 license)
+DEFAULT_BGM_URL = "https://opengameart.org/sites/default/files/our_expanse_-_loop.mp3"
+DEFAULT_BGM_FILENAME = "default-bgm.mp3"
 
 
 def parse_args() -> argparse.Namespace:
@@ -24,7 +30,13 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--bgm-file",
-        help="Optional background music file to copy into public/audio.",
+        help="Background music file to copy into public/audio. "
+        "When omitted, a CC0 default track is downloaded automatically.",
+    )
+    parser.add_argument(
+        "--no-bgm",
+        action="store_true",
+        help="Explicitly skip background music entirely.",
     )
     parser.add_argument("--project-name", default="Project Name")
     parser.add_argument(
@@ -113,9 +125,33 @@ def prepare_public_screenshots(
     return prepared
 
 
-def copy_background_music(source: Optional[str], audio_dir: Path) -> Optional[str]:
-    if not source:
+def _download_default_bgm(audio_dir: Path) -> Optional[str]:
+    """Download the CC0 default background music track."""
+    audio_dir.mkdir(parents=True, exist_ok=True)
+    target = audio_dir / DEFAULT_BGM_FILENAME
+    if target.exists():
+        print("Default BGM already cached: %s" % target)
+        return "audio/%s" % DEFAULT_BGM_FILENAME
+
+    print("Downloading default background music (CC0) ...")
+    try:
+        urllib.request.urlretrieve(DEFAULT_BGM_URL, target)
+        print("Downloaded: %s" % target)
+        return "audio/%s" % DEFAULT_BGM_FILENAME
+    except Exception as exc:
+        print("WARNING: Failed to download default BGM: %s" % exc)
+        print("The video will be rendered without background music.")
         return None
+
+
+def copy_background_music(
+    source: Optional[str], audio_dir: Path, *, no_bgm: bool = False,
+) -> Optional[str]:
+    if no_bgm:
+        return None
+
+    if not source:
+        return _download_default_bgm(audio_dir)
 
     music_path = Path(source).resolve()
     if not music_path.exists():
@@ -317,7 +353,7 @@ def main() -> int:
     shots = prepare_public_screenshots(images, screenshots_dir, args.shot_duration)
     write_manifest(screenshots_dir / "manifest.json", shots)
 
-    music_file = copy_background_music(args.bgm_file, audio_dir)
+    music_file = copy_background_music(args.bgm_file, audio_dir, no_bgm=args.no_bgm)
 
     src_dir = workspace / "src"
     src_dir.mkdir(parents=True, exist_ok=True)
@@ -352,6 +388,8 @@ def main() -> int:
     print("Voiceover script: %s" % (audio_dir / "voiceover-script.json"))
     if music_file:
         print("Background music: %s" % music_file)
+    else:
+        print("Background music: none")
     return 0
 
 
