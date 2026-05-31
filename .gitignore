@@ -1,5 +1,6 @@
 refs/
 tmp/
+outputs/
 
 __pycache__/
 *.pyc
