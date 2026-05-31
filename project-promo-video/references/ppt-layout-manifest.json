@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "description": "PPT layouts that the video skill can use through the HTML-to-slide rendering pipeline.",
+  "styles": {
+    "editorial": {
+      "template": "template.html",
+      "layouts": {
+        "A01": {"name": "Hero Cover", "source": "layouts.md Layout 1", "kind": "native-or-raw"},
+        "A02": {"name": "Act Divider", "source": "layouts.md Layout 2", "kind": "raw-section"},
+        "A03": {"name": "Big Numbers Grid", "source": "layouts.md Layout 3", "kind": "raw-section"},
+        "A04": {"name": "Quote + Image", "source": "layouts.md Layout 4", "kind": "native-or-raw"},
+        "A05": {"name": "Image Grid", "source": "layouts.md Layout 5", "kind": "native-or-raw"},
+        "A06": {"name": "Pipeline", "source": "layouts.md Layout 6", "kind": "raw-section"},
+        "A07": {"name": "Hero Question / Closing", "source": "layouts.md Layout 7", "kind": "native-or-raw"},
+        "A08": {"name": "Big Quote", "source": "layouts.md Layout 8", "kind": "raw-section"},
+        "A09": {"name": "Before / After", "source": "layouts.md Layout 9", "kind": "raw-section"},
+        "A10": {"name": "Lead Image + Side Text", "source": "layouts.md Layout 10", "kind": "native-or-raw"}
+      }
+    },
+    "swiss": {
+      "template": "template-swiss.html",
+      "layouts": {
+        "SWISS-COVER-ASCII": {"name": "Swiss ASCII Cover", "source": "SKILL.md explicit Swiss cover", "kind": "native-or-raw"},
+        "SWISS-CLOSING-ASCII": {"name": "Swiss ASCII Closing", "source": "SKILL.md explicit Swiss closing", "kind": "native-or-raw"},
+        "S01": {"name": "Index Cover", "source": "swiss-layout-lock.md S01", "kind": "native-or-raw"},
+        "S02": {"name": "Vertical Timeline + KPI", "source": "swiss-layout-lock.md S02", "kind": "raw-section"},
+        "S03": {"name": "Split Statement", "source": "swiss-layout-lock.md S03", "kind": "raw-section"},
+        "S04": {"name": "Six Cells", "source": "swiss-layout-lock.md S04", "kind": "raw-section"},
+        "S05": {"name": "Three Layers", "source": "swiss-layout-lock.md S05", "kind": "raw-section"},
+        "S06": {"name": "KPI Tower", "source": "swiss-layout-lock.md S06", "kind": "raw-section"},
+        "S07": {"name": "Horizontal Bar", "source": "swiss-layout-lock.md S07", "kind": "raw-section"},
+        "S08": {"name": "Duo Compare", "source": "swiss-layout-lock.md S08", "kind": "raw-section"},
+        "S08_MAP": {"name": "S08 + Swiss Map Component", "source": "swiss-map-component.md", "kind": "raw-section"},
+        "S09": {"name": "Dot Matrix Statement", "source": "swiss-layout-lock.md S09", "kind": "raw-section"},
+        "S10": {"name": "Split Closing", "source": "swiss-layout-lock.md S10", "kind": "native-or-raw"},
+        "S11": {"name": "Horizontal Timeline", "source": "swiss-layout-lock.md S11", "kind": "raw-section"},
+        "S12": {"name": "Manifesto + Ink Banner", "source": "swiss-layout-lock.md S12", "kind": "raw-section"},
+        "S13": {"name": "Three Forces", "source": "swiss-layout-lock.md S13", "kind": "raw-section"},
+        "S14": {"name": "Loop Form", "source": "swiss-layout-lock.md S14", "kind": "raw-section"},
+        "S15": {"name": "Matrix + Hero Stat", "source": "swiss-layout-lock.md S15", "kind": "raw-section"},
+        "S16": {"name": "Multi-card Brief", "source": "swiss-layout-lock.md S16", "kind": "raw-section"},
+        "S17": {"name": "System Diagram", "source": "swiss-layout-lock.md S17", "kind": "raw-section"},
+        "S18": {"name": "Why Now", "source": "swiss-layout-lock.md S18", "kind": "raw-section"},
+        "S19": {"name": "Four Cards", "source": "swiss-layout-lock.md S19", "kind": "raw-section"},
+        "S20": {"name": "Stacked KPI Ledger", "source": "swiss-layout-lock.md S20", "kind": "raw-section"},
+        "S21": {"name": "Tech Spec Sheet", "source": "swiss-layout-lock.md S21", "kind": "raw-section"},
+        "S22": {"name": "Image Hero", "source": "swiss-layout-lock.md S22", "kind": "native-or-raw"}
+      },
+      "experimental": {
+        "P23": {"name": "Swiss Image Split", "source": "layouts-swiss.md historical experimental section", "kind": "raw-section"},
+        "P24": {"name": "Swiss Evidence Grid", "source": "layouts-swiss.md historical experimental section", "kind": "raw-section"}
+      }
+    }
+  }
+}

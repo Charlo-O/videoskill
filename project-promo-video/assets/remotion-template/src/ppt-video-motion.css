@@ -1,0 +1,110 @@
+.ppt-dom-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--paper, #fafaf8);
+}
+
+.ppt-dom-html,
+.ppt-dom-html > .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ppt-dom-html > .slide {
+  flex: none;
+}
+
+.ppt-dom-scene #nav,
+.ppt-dom-scene #hint,
+.ppt-dom-scene #overview {
+  display: none !important;
+}
+
+.ppt-dom-scene [data-motion-id],
+.ppt-dom-scene .sub-card,
+.ppt-dom-scene .card-fill,
+.ppt-dom-scene .kpi-cell,
+.ppt-dom-scene .timeline-h .th-node,
+.ppt-dom-scene .ledger-row,
+.ppt-dom-scene [data-anim="up"] > *,
+.ppt-dom-scene .frame-img img,
+.ppt-dom-scene [data-anim="img"] img,
+.ppt-dom-scene .row-fill,
+.ppt-dom-scene .bar-tower .body-block,
+.ppt-dom-scene [data-anim="bars"] .vbar,
+.ppt-dom-scene svg circle,
+.ppt-dom-scene svg path,
+.ppt-dom-scene svg line {
+  will-change: opacity, transform;
+}
+
+.ppt-dom-scene [data-motion-kind^="text"] {
+  display: inline-block;
+  transform-origin: center 80%;
+  white-space: pre-wrap;
+}
+
+.ppt-dom-scene [data-motion-kind="line"],
+.ppt-dom-scene [data-motion-kind="bar"],
+.ppt-dom-scene [data-motion-kind="shape"] {
+  transform-box: fill-box;
+}
+
+.ppt-dom-scene [data-motion-kind="image"] {
+  transform-origin: center center;
+}
+
+.ppt-dom-scene .row-fill {
+  transform-origin: left center;
+}
+
+.ppt-dom-scene .bar-tower .body-block,
+.ppt-dom-scene [data-anim="bars"] .vbar {
+  transform-origin: bottom center;
+}
+
+.ppt-dom-scene .frame-img,
+.ppt-dom-scene [data-anim="img"] {
+  overflow: hidden;
+}
+
+.ppt-dom-scene .frame-img img,
+.ppt-dom-scene [data-anim="img"] img {
+  transform-origin: center center;
+}
+
+.ppt-dom-scene .canvas-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.ppt-dom-scene .canvas-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 47, 167, 0.12) 46%,
+    transparent 72%
+  );
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 18;
+  will-change: opacity, transform;
+}
+
+.ppt-dom-scene .canvas-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: currentColor;
+  pointer-events: none;
+  z-index: 20;
+}
